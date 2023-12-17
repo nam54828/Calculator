@@ -1,4 +1,11 @@
+
 import 'package:flutter/material.dart';
+
+import 'templates/custom_button.dart';
+import 'templates/custom_number.dart';
+import 'templates/custom_top.dart';
+
+
 
 class CalculatorScreen extends StatefulWidget {
   const CalculatorScreen({Key? key}) : super(key: key);
@@ -8,6 +15,7 @@ class CalculatorScreen extends StatefulWidget {
 }
 
 class _CalculatorScreenState extends State<CalculatorScreen> {
+  bool _pressed = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,315 +32,69 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                CustomTop(text: "AC"),
+                CustomTop(text: "+/_"),
+                CustomTop(text: "%"),
                 GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      "AC",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(165, 165, 165, 1)),
-                  ),
-                ),
+                  child: CustomButton(text: "/"),
+                  onTap: (){
+
+                  },),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomNumber(text: "7"),
+                CustomNumber(text: "8"),
+                CustomNumber(text: "9"),
                 GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      "+/_",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(165, 165, 165, 1)),
-                  ),
-                ),
+                  child: CustomButton(text: "x"),
+                  onTap: (){
+
+                  },),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomNumber(text: "4"),
+                CustomNumber(text: "5"),
+                CustomNumber(text: "6"),
                 GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      "%",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(165, 165, 165, 1)),
-                  ),
-                ),
+                  child: CustomButton(text: "-"),
+                  onTap: (){
+
+                  },),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomNumber(text: "1"),
+                CustomNumber(text: "2"),
+                CustomNumber(text: "3"),
                 GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      "/",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(254, 159, 10, 1)),
-                  ),
-                ),
+                  child: CustomButton(text: "+"),
+                  onTap: (){
+
+                  },),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      "7",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(51, 51, 51, 1)),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      "8",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(51, 51, 51, 1)),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      "9",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(51, 51, 51, 1)),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      "X",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(254, 159, 10, 1)),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      "4",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(51, 51, 51, 1)),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      "5",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(51, 51, 51, 1)),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      "6",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(51, 51, 51, 1)),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                      height: 80,
-                      width: 80,
-                      child: Center(
-                          child: Text(
-                        "-",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 28,
-                            fontWeight: FontWeight.w500),
-                      )),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(180),
-                          color: Color.fromRGBO(254, 159, 10, 1))),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      "1",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(51, 51, 51, 1)),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      "2",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(51, 51, 51, 1)),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      "3",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(51, 51, 51, 1)),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      "+",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(254, 159, 10, 1)),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {},
+                  onTapDown: (_){
+                    setState(() {
+                      _pressed = true;
+                    });
+                  },
+                  onTapUp: (_){
+                    setState(() {
+                      _pressed = false;
+                    });
+                  },
                   child: Container(
                     height: 80,
                     width: 172,
@@ -345,47 +107,17 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                     ),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(51, 51, 51, 1)),
+                        color: _pressed ? Color.fromRGBO(115, 115, 115, 1) :Color.fromRGBO(51, 51, 51, 1)),
                     padding: EdgeInsets.only(left: 30),
                     alignment: Alignment.centerLeft,
                   ),
                 ),
+                CustomNumber(text: ","),
                 GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      ",",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(51, 51, 51, 1)),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 80,
-                    width: 80,
-                    child: Center(
-                        child: Text(
-                      "=",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500),
-                    )),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        color: Color.fromRGBO(254, 159, 10, 1)),
-                  ),
-                ),
+                  child: CustomButton(text: "="),
+                onTap: (){
+
+                },),
               ],
             ),
           ],
