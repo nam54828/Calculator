@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:calculator/controllers/calculator_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +19,7 @@ class CalculatorScreen extends StatefulWidget {
 class _CalculatorScreenState extends State<CalculatorScreen> {
   CalculatorController _calculatorController = Get.find();
   bool _pressed = false;
+  bool _canRemove = true;
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +31,29 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Obx(()  => Container(
-                height: 200,
-                child: Text(
-                  "${_calculatorController.resultMath}",
-                  style: TextStyle(color: Colors.white54,
-                  fontSize: 90),
+            Obx(()  => GestureDetector(
+            onHorizontalDragUpdate: (details){
+              if ( details.primaryDelta!<0 && _canRemove){
+                _calculatorController.removeLastNumber();
+                _canRemove = false;
+                Timer(Duration(milliseconds: 500), () {
+                  _canRemove = true;
+                });
+              }
+            },
+              child: Container(
+
+                  height: 200,
+                  child: FittedBox(
+                    child: Text(
+                      "${_calculatorController.resultMath}",
+                      style: TextStyle(color: Colors.white,
+                      fontSize: 90),
+                    ),
+                  ),
+                alignment: Alignment.bottomRight,
                 ),
-              alignment: Alignment.bottomRight,
-              ),
+            ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,6 +70,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   text: "%",
                   onTap: () => _calculatorController.percent(),
                 ),
+                // CustomTop(
+                //   text: "del",
+                //   onTap: () => _calculatorController.removeLastNumber(),
+                // ),
                 CustomButton(text: "/", onTap: (){
                   _calculatorController.selectOperation('/');
                 },),

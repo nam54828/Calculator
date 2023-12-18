@@ -5,7 +5,6 @@ class CalculatorController extends GetxController{
   var number2 = '0'.obs;
   var operation = ''.obs;
   var resultMath = '0'.obs;
-
   var currentNumber ='';
   var currentOperation = '';
 
@@ -28,8 +27,12 @@ class CalculatorController extends GetxController{
       return resultMath.value = '-' + number;
     }
 
-    resultMath.value = resultMath.value + number;
-
+    if (resultMath.value.length <9){
+      resultMath.value = resultMath.value + number;
+    }else{
+      return;
+    }
+    print(resultMath);
   }
 
   negativeChange(){
@@ -63,8 +66,6 @@ class CalculatorController extends GetxController{
     double num1 = double.parse(number1.value);
     double num2 = double.parse(resultMath.value);
 
-    print(num1);
-    print(num2);
     number2.value = resultMath.value;
 
     switch (operation.value){
@@ -95,6 +96,15 @@ class CalculatorController extends GetxController{
     }else{
       resultMath.value = resultMath.value + '.';
     }
+  }
+
+  removeLastNumber(){
+    if(resultMath.value.replaceAll('-', '').length > 1){
+      resultMath.value = resultMath.value.substring(0, resultMath.value.length - 1);
+    }else{
+      resultMath.value ='0';
+    }
+
   }
 
 
