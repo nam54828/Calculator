@@ -1,11 +1,11 @@
-
+import 'package:calculator/controllers/calculator_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'templates/custom_button.dart';
 import 'templates/custom_number.dart';
 import 'templates/custom_top.dart';
 
-
+import 'package:get/get.dart';
 
 class CalculatorScreen extends StatefulWidget {
   const CalculatorScreen({Key? key}) : super(key: key);
@@ -15,7 +15,9 @@ class CalculatorScreen extends StatefulWidget {
 }
 
 class _CalculatorScreenState extends State<CalculatorScreen> {
+  CalculatorController _calculatorController = Get.find();
   bool _pressed = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,74 +28,112 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
-              height: 200,
+            Obx(()  => Container(
+                height: 200,
+                child: Text(
+                  "${_calculatorController.resultMath}",
+                  style: TextStyle(color: Colors.white54,
+                  fontSize: 90),
+                ),
+              alignment: Alignment.bottomRight,
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CustomTop(text: "AC"),
-                CustomTop(text: "+/_"),
-                CustomTop(text: "%"),
-                GestureDetector(
-                  child: CustomButton(text: "/"),
-                  onTap: (){
-
-                  },),
+                CustomTop(
+                  text: "AC",
+                  onTap: () => _calculatorController.resetAll(),
+                ),
+                CustomTop(
+                  text: "+/_",
+                  onTap: () => _calculatorController.negativeChange(),
+                ),
+                CustomTop(
+                  text: "%",
+                  onTap: () => _calculatorController.percent(),
+                ),
+                CustomButton(text: "/", onTap: (){
+                  _calculatorController.selectOperation('/');
+                },),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CustomNumber(text: "7"),
-                CustomNumber(text: "8"),
-                CustomNumber(text: "9"),
-                GestureDetector(
-                  child: CustomButton(text: "x"),
-                  onTap: (){
-
-                  },),
+                CustomNumber(
+                  text: "7",
+                  onTap: () => _calculatorController.addNumber('7'),
+                ),
+                CustomNumber(
+                  text: "8",
+                  onTap: () => _calculatorController.addNumber('8'),
+                ),
+                CustomNumber(
+                  text: "9",
+                  onTap: () => _calculatorController.addNumber('9'),
+                ),
+                CustomButton(text: "x", onTap: (){
+                  _calculatorController.selectOperation('x');
+                },),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CustomNumber(text: "4"),
-                CustomNumber(text: "5"),
-                CustomNumber(text: "6"),
-                GestureDetector(
-                  child: CustomButton(text: "-"),
-                  onTap: (){
-
-                  },),
+                CustomNumber(
+                  text: "4",
+                  onTap: () => _calculatorController.addNumber('4'),
+                ),
+                CustomNumber(
+                  text: "5",
+                  onTap: () => _calculatorController.addNumber('5'),
+                ),
+                CustomNumber(
+                  text: "6",
+                  onTap: () => _calculatorController.addNumber('6'),
+                ),
+                CustomButton(text: "-", onTap: (){
+                  _calculatorController.selectOperation('-');
+                },),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CustomNumber(text: "1"),
-                CustomNumber(text: "2"),
-                CustomNumber(text: "3"),
-                GestureDetector(
-                  child: CustomButton(text: "+"),
-                  onTap: (){
-
-                  },),
+                CustomNumber(
+                  text: "1",
+                  onTap: () => _calculatorController.addNumber('1'),
+                ),
+                CustomNumber(
+                  text: "2",
+                  onTap: () => _calculatorController.addNumber('2'),
+                ),
+                CustomNumber(
+                  text: "3",
+                  onTap: () => _calculatorController.addNumber('3'),
+                ),
+                CustomButton(text: "+", onTap: (){
+                  _calculatorController.selectOperation('+');
+                },),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTapDown: (_){
+                  onTapDown: (_) {
                     setState(() {
                       _pressed = true;
                     });
                   },
-                  onTapUp: (_){
+                  onTapUp: (_) {
                     setState(() {
                       _pressed = false;
                     });
+                  },
+                  onTap: (){
+                    _calculatorController.addNumber('0');
                   },
                   child: Container(
                     height: 80,
@@ -107,16 +147,19 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                     ),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(180),
-                        color: _pressed ? Color.fromRGBO(115, 115, 115, 1) :Color.fromRGBO(51, 51, 51, 1)),
+                        color: _pressed
+                            ? Color.fromRGBO(115, 115, 115, 1)
+                            : Color.fromRGBO(51, 51, 51, 1)),
                     padding: EdgeInsets.only(left: 30),
                     alignment: Alignment.centerLeft,
                   ),
                 ),
-                CustomNumber(text: ","),
-                GestureDetector(
-                  child: CustomButton(text: "="),
-                onTap: (){
-
+                CustomNumber(
+                  text: ",",
+                  onTap: () => _calculatorController.dotOperation(),
+                ),
+                CustomButton(text: "=",onTap: () {
+                  _calculatorController.operationResult();
                 },),
               ],
             ),

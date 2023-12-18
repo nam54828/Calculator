@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 class CustomNumber extends StatefulWidget {
   final String text;
+  final Function onTap;
 
-  const CustomNumber({Key? key, required this.text}) : super(key: key);
+  const CustomNumber({Key? key, required this.text, required this.onTap}) : super(key: key);
 
   @override
   State<CustomNumber> createState() => _CustomNumberState();
@@ -24,6 +25,9 @@ class _CustomNumberState extends State<CustomNumber> {
         setState(() {
           _pressed = false;
         });
+      },
+      onTap: () {
+        widget.onTap();
       },
       child: Container(
         height: 80,

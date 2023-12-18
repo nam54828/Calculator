@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class CustomTop extends StatefulWidget {
   final String text;
-  const CustomTop({Key? key, required this.text}) : super(key: key);
+  final Function onTap;
+  const CustomTop({Key? key, required this.text, required this.onTap}) : super(key: key);
 
   @override
   State<CustomTop> createState() => _CustomTopState();
@@ -22,6 +23,9 @@ class _CustomTopState extends State<CustomTop> {
         setState(() {
           _pressed = false;
         });
+      },
+      onTap: (){
+        widget.onTap();
       },
       child: Container(
         height: 80,

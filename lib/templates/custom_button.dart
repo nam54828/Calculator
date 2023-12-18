@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class CustomButton extends StatefulWidget {
 
   final String text;
-
+  final Function onTap;
   const CustomButton({
     Key? key,
-    required this.text
+    required this.text, required this.onTap
   });
 
   @override
@@ -23,6 +23,9 @@ class _CustomButtonState extends State<CustomButton> {
     return GestureDetector(
       onTapDown: (_) => setState(() => _pressed = true),
       onTapUp: (_) => setState(() => _pressed = false),
+      onTap: (){
+        widget.onTap();
+      },
       child: Container(
         height: 80,
         width: 80,
