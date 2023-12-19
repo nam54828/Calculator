@@ -1,12 +1,12 @@
 import 'dart:async';
 
+import 'package:calculator/contains/contains.dart';
 import 'package:calculator/controllers/calculator_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'templates/custom_button.dart';
 import 'templates/custom_number.dart';
 import 'templates/custom_top.dart';
-
 import 'package:get/get.dart';
 
 class CalculatorScreen extends StatefulWidget {
@@ -20,6 +20,13 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   CalculatorController _calculatorController = Get.find();
   bool _pressed = false;
   bool _canRemove = true;
+
+  @override
+  void initState() {
+    super.initState();
+    // TODO: implement initState
+    _calculatorController.resultMath.value = box.read('resultMath') ?? '0';
+  }
 
   @override
   Widget build(BuildContext context) {

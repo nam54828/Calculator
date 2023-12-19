@@ -1,3 +1,4 @@
+import 'package:calculator/contains/contains.dart';
 import 'package:get/get.dart';
 
 class CalculatorController extends GetxController{
@@ -5,9 +6,6 @@ class CalculatorController extends GetxController{
   var number2 = '0'.obs;
   var operation = ''.obs;
   var resultMath = '0'.obs;
-  var currentNumber ='';
-  var currentOperation = '';
-
 
 
   resetAll(){
@@ -15,11 +13,11 @@ class CalculatorController extends GetxController{
     number2.value = '0';
     operation.value = '+';
     resultMath.value = '0';
+    saveResultToStorage();
     print("reset done");
   }
 
   addNumber( String number ) {
-
     if ( resultMath.value == '0' )
       return resultMath.value = number;
 
@@ -54,20 +52,19 @@ class CalculatorController extends GetxController{
 
   }
 
-  selectOperation(String Operation){
+  selectOperation(String Operation) {
+    if (number1.value == '0') {
+      number1.value = resultMath.value;
+    } else {
+      operationResult();
+    }
     operation.value = Operation;
-    number1.value = resultMath.value;
     resultMath.value = '';
-
-    print(Operation);
+    print(operation);
   }
-
   operationResult(){
     double num1 = double.parse(number1.value);
     double num2 = double.parse(resultMath.value);
-
-    number2.value = resultMath.value;
-
     switch (operation.value){
       case '/':
         resultMath.value = '${num1 / num2}';
@@ -87,6 +84,8 @@ class CalculatorController extends GetxController{
     if(resultMath.endsWith('.0')){
       resultMath.value = resultMath.substring(0,resultMath.value.length-2);
     }
+    number1.value = resultMath.value;
+    saveResultToStorage();
   }
 
   dotOperation(){
@@ -104,8 +103,11 @@ class CalculatorController extends GetxController{
     }else{
       resultMath.value ='0';
     }
-
+    saveResultToStorage();
   }
 
+  void saveResultToStorage() {
+    box.write('resultMath', resultMath.value);
+  }
 
 }

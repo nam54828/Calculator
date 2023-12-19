@@ -1,11 +1,12 @@
-import 'package:calculator/helper/init_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'calculator_screen.dart';
 import 'helper/init_controller.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init('resultMath');
   await di.InitController();
   runApp(const MyApp());
 }
